@@ -7,7 +7,6 @@ export default class User extends Component {
   componentWillMount() {
     console.log(getApp().$app.globalData)
     console.log(wx.getStorageSync('code'))
-    console.log(this)
   }
 
   render() {

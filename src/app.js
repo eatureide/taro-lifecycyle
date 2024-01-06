@@ -1,14 +1,5 @@
 import { Component } from 'react'
 import './app.scss'
-import redefineLifeCycle from './redefineLifeCycle'
-
-async function prefixTask() {
-  const { code } = await wx.login()
-  wx.setStorageSync('code', code)
-  if (this.globalData) this.globalData = code
-}
-
-redefineLifeCycle(prefixTask)
 
 class App extends Component {
 
@@ -17,8 +8,8 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    console.log(getApp().$app.globalData)
-    console.log(wx.getStorageSync('code'))
+    const { code } = await wx.login()
+    this.globalData = code
   }
 
   render() {

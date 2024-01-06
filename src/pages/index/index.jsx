@@ -7,7 +7,6 @@ export default class Index extends PureComponent {
 
   componentWillMount() {
     console.log(getApp().$app.globalData)
-    console.log(wx.getStorageSync('code'))
   }
 
   handleUser() {
