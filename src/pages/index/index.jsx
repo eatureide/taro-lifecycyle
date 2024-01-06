@@ -1,9 +1,9 @@
 import { View, Text, Button } from '@tarojs/components'
 import Taro, { useLoad } from '@tarojs/taro'
-import { Component } from 'react'
+import { Component, PureComponent } from 'react'
 import './index.scss'
 
-export default class Index extends Component {
+export default class Index extends PureComponent {
 
   componentWillMount() {
     console.log(getApp().$app.globalData)

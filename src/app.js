@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   async componentWillMount() {
-
+    console.log(getApp().$app.globalData)
+    console.log(wx.getStorageSync('code'))
   }
 
   render() {
