@@ -1,16 +1,20 @@
 import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+import { Component } from 'react'
 import './index.scss'
 
-export default function Index() {
+export default class Index extends Component {
 
-  useLoad(() => {
+  componentWillMount() {
     console.log(getApp().$app.globalData)
-  })
+    console.log(wx.getStorageSync('code'))
+  }
 
-  return (
-    <View className='index'>
-      <Text>Hello world!</Text>
-    </View>
-  )
+  render() {
+    return (
+      <View className='index'>
+        <Text>Hello world!</Text>
+      </View>
+    )
+  }
 }
