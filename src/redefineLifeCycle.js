@@ -8,7 +8,8 @@ let globalTask = null
 let globalTaskComplete = false
 let globalPromise = null
 
-function clearLifeCycleEffect() {
+function clearLifeCycleEffect(error) {
+    error && console.log(error)
     globalTask = null
     globalPromise = null
     globalTaskComplete = true
@@ -42,7 +43,7 @@ function redefineComponentBody(originLifeCycle) {
             await handlePrefixTask.apply(this)
         }
         catch (error) {
-            console.log(error)
+            clearLifeCycleEffect(error)
         }
         finally {
             originLifeCycle.apply(this)
