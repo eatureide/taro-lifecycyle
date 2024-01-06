@@ -12,6 +12,7 @@ function clearLifeCycleEffect() {
     globalTask = null
     globalPromise = null
     globalTaskComplete = true
+
     React.Component = originComponent
     React.PureComponent = originPureComponent
     React.useEffect = originUseEffect
@@ -55,8 +56,8 @@ async function redefineLifeCycle() {
     if (componentDidMount) this.componentDidMount = redefineComponentBody(componentDidMount)
 }
 
-function redefineComponent(originComponent) {
-    return class _redefineComponent extends originComponent {
+function redefineComponent(OriginComponent) {
+    return class _redefineComponent extends OriginComponent {
         constructor() {
             super()
             if (!globalTaskComplete) redefineLifeCycle.apply(this)
@@ -66,6 +67,7 @@ function redefineComponent(originComponent) {
 
 export default function init(prefixTask) {
     globalTask = prefixTask
-    originComponent = React.originComponent
+    originComponent = React.Component
+    originPureComponent = React.PureComponent
     React.Component = redefineComponent(React.Component)
 }
